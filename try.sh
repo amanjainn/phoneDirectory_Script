@@ -18,18 +18,13 @@ case $usr_cmd in
   read -p "Enter Name:" name
   read -p "Enter USN: " usn
   echo "Enter phone number: "
-  numberExist=1
-  while[ $numberExist !=0 ]
-  do
-   read number
-   numberExist=`grep -e "^${number}" phonedir.log | wc -l`
-   if [["$numberExist" !="0"]]
-   then
-	echo "Contact already exist"
-   fi
+ read number
+  pat="^[0-9]{10}$"
+  while [[ ! $number =~ $pat ]]
+    do
+    echo "Please enter a valid number :"
+    read number
 done
-
-
   read -p "Enter email address: " email
   clear
   echo "New student Added"
